@@ -1,0 +1,24 @@
+{
+    "id": "TPNXOR",
+    "title": "Thiên Phúc Và XOR",
+    "tags": [
+        "cs",
+        "basic",
+        "dochieu",
+        "monke",
+        "nevertrustmrp",
+        "thienphuc3005",
+        "cryptography",
+        "implementation"
+    ],
+    "visible": true,
+    "difficulty": "Low",
+    "total_score": 100,
+    "time_limit": 1000,
+    "memory_limit": 50,
+
+    "source": "Irt291",
+    "rule_type": "OI",
+    "languages": ["C", "C++", "Python3", "Java"],
+    "share_submission": false
+}

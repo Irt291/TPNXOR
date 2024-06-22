@@ -1,0 +1,5 @@
+httpx # automatic problem upload
+pillow # convert image
+markdown # parse markdown to HTML
+pydantic # problem model make my life easier
+beautifulsoup4 # parse HTML, convert normal <img> tag to base64
