@@ -11,12 +11,22 @@ from utils.fileUtils import readFile
 def convertImageToBase64(html):
     cook = BeautifulSoup(html, "html.parser")
     for imageTag in cook.find_all("img"):
-        imagePath = (r"./src/Assets" / Path(imageTag["src"])).resolve()
-        with Image.open(imagePath.open("rb")) as img:
-            pngImage = io.BytesIO()
-            img.save(fp=pngImage, format="PNG")
-            b64 = base64.b64encode(pngImage.getvalue()).decode("utf-8")
-            imageTag["src"] = f"data:image/png;base64,{b64}"
+        url = imageTag["src"]
+        if "data:" in url: continue
+        imagePath = (r"./src/Assets" / Path(url)).resolve()
+        if imagePath.suffix in [".png", ".jpg", ".webp"]:
+            with Image.open(imagePath.open("rb")) as img:
+                imgBuffer = io.BytesIO()
+                img.save(
+                    fp = imgBuffer,
+                    format = "WEBP",
+                    lossless = True,
+                    quality = 100,
+                    method = 6,
+                    exact = True
+                )
+                b64 = base64.b64encode(imgBuffer.getvalue()).decode("utf-8")
+                imageTag["src"] = f"data:image/webp;base64,{b64}"
         
     return cook.decode()
 
@@ -28,7 +38,8 @@ def parseCSSFile(content: str):
         .replace(" ", "") \
         .replace("\n", "")
         
-        
+
+# <img src="/api/logout"> troll viet nam XSS :))
 def usingCustomCSS(html: str, customCSS: str):
     return f"""
 <div style='{customCSS}'>

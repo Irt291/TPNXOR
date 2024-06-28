@@ -38,9 +38,9 @@ result = checkContestPassword(
 )
 
 
-print(xorFunc(key="nghoangphudeptrai123", data="',1=!*(00"))
+print(xorFunc(key=secretKey, data="%V"))
 print(xorFunc(key="nghoangphudeptrai123", data=")64"))
-print(xorFunc(key=secretKey, data="UT%V"))
+print(xorFunc(key="nghoangphudeptrai123", data="',1=!*(v0"))
 # print(result)
 
 
@@ -48,8 +48,4 @@ print(xorFunc(key=secretKey, data="UT%V"))
 
 
 
-
-
-
-
-
+#print(xorFunc(key="nghoangphudeptrai123", data="',1=!*(00")) # 2 so 0 lo roi

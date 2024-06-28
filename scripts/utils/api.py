@@ -7,6 +7,7 @@ class NHPClient:
         self.httpClient = httpx.Client(
             timeout = None,
             base_url = baseURL,
+            http2 = True,
             cookies = {
                 "sessionid": sessionID
             }
@@ -15,14 +16,13 @@ class NHPClient:
         csrfToken: str = self.httpClient.cookies.get("csrftoken", "") # type: ignore
         self.httpClient.headers.update(
             {
-                "X-CSRFToken": csrfToken
+                "X-CSRFToken": csrfToken,
+                # "Referer": "https://nhpoj.net/"
             }
         ) # Nam 2024 ma van con csrf sao ??? met
-        
-        # Check Auth
         isAuthenticated = self.httpClient.get(url="/api/profile").json()["data"]
         if isAuthenticated is None:
-            print("Not Authenicated!")
+            print("\n=== Not Authenicated! ===\n")
             exit(1)
         else:
             print(f'=== Login as {isAuthenticated["user"]["username"]}. ===')
@@ -53,33 +53,31 @@ class NHPClient:
             },
             data = {"spj": False},
             files = {"file": testCaseArchive.open(mode="rb")}
-        ).json()
-        
-        
-        return self.raiseError(response)
+        )
+        return self.raiseError(response.json())
     
     
     def editProblem(self, metadata: models.Problem, edit: bool = False):
         data = metadata.model_dump()        
         data["_id"] = data["id"]        
         if edit:
-            method = self.httpClient.put
+            httpMethod = self.httpClient.put
             data["id"] = data["n_id"]
         else:
-            method = self.httpClient.post
+            httpMethod = self.httpClient.post
             del data["id"]
     
         del data["n_id"]
         
-        response = method(
+        response = httpMethod(
             url = "/api/admin/problem",
             headers = {
                 "Accept": "application/json, text/plain, */*",
                 "Content-Type": "application/json;charset=UTF-8"
             },
             json = data
-        ).json()
-        return self.raiseError(response)
+        )
+        return self.raiseError(response.json())
         
     
     def deleteProblem(self, problemID: str):
@@ -93,8 +91,8 @@ class NHPClient:
                 params = {
                     "id": problem["id"]
                 }
-            ).json()
-            self.raiseError(response)
+            )
+            self.raiseError(response.json())
         
         return True
 

@@ -1,6 +1,7 @@
 import sys
 import json
 from pathlib import Path
+from pprint import pprint
 from utils.api import NHPClient
 from utils.models import Problem
 from utils.fileUtils import readFile
@@ -35,7 +36,7 @@ else:
 
 problem = Problem.model_validate(metadata)
 
-print(problem)
+pprint(problem.model_dump(), indent=4, sort_dicts=True)
 
 response = client.editProblem(problem, edit=EDIT)
 print(response) # None = ok

@@ -111,7 +111,9 @@ def main():
         
     SCORE_EACH_TEST, mod = divmod(TOTAL_SCORE, AMOUNT)
 
-    if mod != 0: raise Exception("Tong diem phai chia het cho so test!")
+    if mod != 0:
+        print("\n=== Error: Tong diem phai chia het cho so test! ===\n")
+        exit(1)
     
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR, exist_ok=True)

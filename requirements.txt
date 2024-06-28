@@ -1,4 +1,4 @@
-httpx # automatic problem upload
+httpx[http2] # automatic problem upload
 pillow # convert image
 markdown # parse markdown to HTML
 pydantic # problem model make my life easier

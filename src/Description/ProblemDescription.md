@@ -32,7 +32,7 @@ Sau một hồi cân nhắc, tư duy logic nát cả óc, <a style="color: #fc2f
 Nhiệm vụ của <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> bây giờ là tìm chuỗi kí tự bí mật đó để có thể vào những contest cần phải dùng SEB ngay trên web thường. Và nhờ vào trí óc siêu phàm của mình, bạn đã nhớ ra được một chi tiết rất quan trọng, là chìa khoá để giúp bạn giải quyết được vấn đề này. Đó là lúc học online, <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> đã "vô tình" để lộ một đoạn code không rõ trong khi đang chia sẻ màn hình, và <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> đã cap màn ngay như một bản năng. Đoạn code đó là:
 
 <br><br/>
-    <img alt="Code Leak" src="../Assets/code.jpg" style="width: 63vw; margin-left: auto; margin-right: auto; display: block"/>
+    <img alt="Code Leak" src="../Assets/code.png" style="width: 50vw; margin-left: auto; margin-right: auto; display: block"/>
 <br><br/>
 
 Như các bạn đã thấy, đoạn code mà <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> đã cap là màn hình của <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> đang sửa code trên web của mình (có lẽ là đang test code mới dùng lệnh `print()` đây). Mà bỏ chuyện đó qua một bên, <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> để ý ở phía phần console của cửa sổ là output của của ba dòng **41**, **42** và **43** (tiếc là dòng **44** đã bị <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> comment đi mất). <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> nhanh chóng lập ra kế hoạch cho mình. Nhưng trước hết <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> phải biết cách tự triển khai hàm ``xorFunc()`` giống như <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a>. Nhưng vì đã có kinh nghiệm về **XOR** và các thứ liên quan nhờ vào việc trích xuất các file tài nguyên của một game nào đó được mã hoá bằng **XOR**, giờ đây <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> đã có thể dễ dàng hiểu được cách <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> triển khai hàm ``xorFunc()`` được miêu tả như sau:
@@ -53,13 +53,13 @@ Như các bạn đã thấy, đoạn code mà <a style="color: #fc2fb1" href="ht
     Ví dụ nếu ta đưa vào tham số `key` chuỗi `123` và đưa vào tham số `data` chuỗi `thienphuc` thì hàm ``xorFunc()`` sẽ làm việc như sau:
 
 <br></br>
-<img alt="Lý thuyết là vậy" src="../Assets/a.jpg" style="width: 60vw; margin-left: auto; margin-right: auto; display: block"/>
+<img alt="Lý thuyết là vậy" src="../Assets/a.png" style="width: 60vw; margin-left: auto; margin-right: auto; display: block"/>
 <br></br>
 
 - Đó là trên lý thuyết, còn thực tế <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> lại triển khai nó theo một cách khác không giống ai (chắc vì <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> nghĩ làm thế sẽ bảo mật hơn nhưng...). Thay vì làm như cách trên, <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> lại thực hiện phép **XOR** giữa từng kí tự trong tham số `data` lần lượt với hết tất cả kí tự trong tham số `key` như hình dưới:
 
 <br></br>
-<img alt="Mr. P đang làm cái gì vậy???" src="../Assets/b.jpg" style="width: 60vw; margin-left: auto; margin-right: auto; display: block"/>
+<img alt="Mr. P đang làm cái gì vậy???" src="../Assets/b.png" style="width: 60vw; margin-left: auto; margin-right: auto; display: block"/>
 <br></br>
 
 Vốn biết <a style="color: #95ed23" href="https://nhpoj.net/user-home?username=monke">Lê Khôi</a> là một bật thầy trong việc tà đạo, là chuyên gia cop code trên mạng về nên <a style="color: #fc2fb1" href="https://nhpoj.net/user-home?username=thienphuc3005">Thiên Phúc</a> định cho <a style="color: #95ed23" href="https://nhpoj.net/user-home?username=monke">Lê Khôi</a> *"cook"* cái hàm này của <a style="color: #fc2314" href="https://nhpoj.net/user-home?username=nhphu87">Mr. P</a> thay cho mình. Yêu cầu cho <a style="color: #95ed23" href="https://nhpoj.net/user-home?username=monke">Lê Khôi</a> là viết chương trình tìm ra tham số `key` của hàm ``xorFunc()`` khi biết được đầu ra của hàm kèm với tham số `data` của nó. Rồi sau đó dùng tham số `key` vừa mới tìm được để giải mã những chuỗi kí tự khác được cho.
